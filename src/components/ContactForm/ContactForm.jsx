@@ -1,9 +1,8 @@
 import { Formik } from 'formik';
-// import { nanoid } from 'nanoid'
 import * as Yup from 'yup';
-import { Button, StyledField, StyledForm, StyledLabel, StyledError , TitleContactForm} from './ContacForm.styled';
 import { useDispatch } from "react-redux";
 import { addContact } from 'redux/operations';
+import { Button, StyledField, StyledForm, StyledLabel, StyledError , TitleContactForm} from './ContacForm.styled';
 
 const SignupSchema = Yup.object().shape({
    name: Yup.string()

@@ -49,5 +49,14 @@ display: contents;
 export const IconClose = styled(GrClose)`
  path{
   stroke: red; 
- } 
+ }  
 `;
+
+export const TotalText = styled.p`
+color: lightsteelblue;
+`;
+
+export const TitleList = styled.h2`
+color: gainsboro;
+text-align: center;
+`; 

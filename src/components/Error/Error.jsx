@@ -1,4 +1,7 @@
+import { ErrorTitle } from "./Error.styled";
 
-export const Error = () => {
-    return <h2>Sorry, something went wrong, please reload the page.</h2>
+ const Error = () => {
+    return <ErrorTitle>Sorry, something went wrong, please reload the page.</ErrorTitle>
 };
+
+export default Error;

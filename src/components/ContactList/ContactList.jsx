@@ -1,22 +1,21 @@
-import { DeleteBtn, List, WrapItem, Text, WrappText, IconClose } from "./ContactList.styled"
 import { useDispatch, useSelector } from "react-redux";
-import { selectIsLoading, selectVisibleContacts } from "redux/selectors";
 import { deleteContact } from "redux/operations";
+import { selectError, selectVisibleContacts } from "redux/selectors";
+import { DeleteBtn, List, WrapItem, Text, WrappText, IconClose, TitleList, TotalText } from "./ContactList.styled"
+import Error from '../Error';
 
 const ContactList = () => {
   const dispatch = useDispatch();  
 
   const contacts = useSelector(selectVisibleContacts);  
-  const loading = useSelector(selectIsLoading);  
-  // console.log(error);
-  console.log(loading);
+  const error = useSelector(selectError);
   
   return (
     <>
-      {contacts.length === 0 
-        ? (<h2>Sorry, you have no saved contacts.</h2>)
-        : (<>
-          <p>Total contacts: {contacts.length}</p>
+      {error ? <Error/> : null}
+      {(contacts.length !== 0 )
+      ? (<>
+          <TotalText>Total contacts: {contacts.length}</TotalText>
     <List>
       {contacts.map(({id, name, phone}) => (        
         <li key={id}>
@@ -32,9 +31,11 @@ const ContactList = () => {
         </li>
       ))}
     </List>
-      </>)}        
+      </>)
+        : (error ? null : <TitleList>Sorry, you have no saved contacts.</TitleList>)
+         }        
     </>
   )
 };
 
-export default ContactList
+export default ContactList;
