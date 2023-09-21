@@ -1,9 +1,9 @@
-// import { setContactFilter } from "redux/contactSlice";
+import { setContactFilter } from "redux/contactSlice";
 import { InputFilter, TextFilter, TitleFilter } from "./Filter.styled";
-// import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 const Filter = () => { 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   
   return (
     <> 
@@ -11,7 +11,7 @@ const Filter = () => {
       <TextFilter>Find contacts by name</TextFilter>
       <InputFilter
         type="text"        
-        // onChange={(evt)=>dispatch(setContactFilter(evt.target.value))} 
+        onChange={(evt)=>dispatch(setContactFilter(evt.target.value))} 
       />
     </>
   );

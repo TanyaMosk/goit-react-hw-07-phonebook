@@ -2,8 +2,8 @@ import { Formik } from 'formik';
 // import { nanoid } from 'nanoid'
 import * as Yup from 'yup';
 import { Button, StyledField, StyledForm, StyledLabel, StyledError , TitleContactForm} from './ContacForm.styled';
-// import { useDispatch } from "react-redux";
-// import { addContacts } from 'redux/contactSlice';
+import { useDispatch } from "react-redux";
+import { addContact } from 'redux/operations';
 
 const SignupSchema = Yup.object().shape({
    name: Yup.string()
@@ -11,7 +11,7 @@ const SignupSchema = Yup.object().shape({
      .max(20, 'Too Long!')
      .trim()
      .required('Required'),
-   number: Yup.string()
+   phone: Yup.string()
      .min(2, 'Too Short!')
      .max(20, 'Too Long!')
      .required('Required'),
@@ -19,7 +19,7 @@ const SignupSchema = Yup.object().shape({
 
 const ContactForm = () => {
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   
   return (
     <>
@@ -27,11 +27,11 @@ const ContactForm = () => {
       <Formik
         initialValues={{
           name: '',
-          number: '',
+          phone: '',
             }}
             validationSchema={SignupSchema}
         onSubmit={(values, actions) => {              
-              // dispatch(addContacts({...values, id: nanoid()}));
+              dispatch(addContact({...values}));
               actions.resetForm();          
             }}
       >
@@ -46,14 +46,14 @@ const ContactForm = () => {
        <StyledError name="name" component="div"/>
         </StyledLabel>
 
-        <StyledLabel>Number
+        <StyledLabel>Phone
         <StyledField
         type="tel"
-        name="number"
+        name="phone"
         pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
         title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
         required/>
-        <StyledError name="number" component="div"/>
+        <StyledError name="phone" component="div"/>
         </StyledLabel>
                   
         <Button type="submit">Add contact</Button>

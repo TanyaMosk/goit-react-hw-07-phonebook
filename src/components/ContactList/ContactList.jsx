@@ -1,33 +1,29 @@
-// import { deleteContacts } from "redux/contactSlice";
 import { DeleteBtn, List, WrapItem, Text, WrappText, IconClose } from "./ContactList.styled"
-import {
-  // useDispatch,
-  useSelector
-} from "react-redux";
-// import { getContacts } from "redux/selectors";
+import { useDispatch, useSelector } from "react-redux";
+import { selectVisibleContacts } from "redux/selectors";
+import { deleteContact, fetchContacts } from "redux/operations";
+import { useEffect } from "react";
 
 const ContactList = () => {
-  // const dispatch = useDispatch();
-  // const { contacts, filter } = useSelector(state => state.contacts);  
-const contacts = useSelector((state) => state.contacts.contacts.items);
+  const dispatch = useDispatch();
   
+  // Фетч при вході
+  useEffect(() => {
+        dispatch(fetchContacts())
+    }, [dispatch]);
 
-  console.log(contacts);
+  const contacts = useSelector(selectVisibleContacts); 
   
-  // const visibleContacts = contacts.filter(contact => contact.name.toLowerCase().includes(filter.toLowerCase())); 
-
   return (
     <List>
-      {contacts.map(({id, name, number}) => (        
+      {contacts.map(({id, name, phone}) => (        
         <li key={id}>
           <WrapItem>
             <WrappText>
             <Text>{name}</Text>
-            <Text> {number}</Text>
+            <Text> {phone}</Text>
            </WrappText>
-            <DeleteBtn
-              // onClick={() => dispatch(deleteContacts(id))}
-            >
+            <DeleteBtn onClick={() => dispatch(deleteContact(id))}>
               <IconClose />
             </DeleteBtn>
           </WrapItem>
