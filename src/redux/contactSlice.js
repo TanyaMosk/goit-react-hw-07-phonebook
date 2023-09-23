@@ -18,8 +18,8 @@ const handleFetchContactsFulfilled = (state, action) => {
 
 const handleAddContactsFulfilled = (state, action) => {
     state.contacts.isLoading = false;
-    state.contacts.error = null;
-    state.contacts.items.push(action.payload);
+    state.contacts.error = null;     
+    state.contacts.items.push(action.payload);        
 };
 
 const handleDeleteContactFulfilled = (state, action) => {

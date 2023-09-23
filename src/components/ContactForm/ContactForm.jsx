@@ -18,7 +18,7 @@ const SignupSchema = Yup.object().shape({
 
 const ContactForm = () => {
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch(); 
   
   return (
     <>
@@ -29,10 +29,10 @@ const ContactForm = () => {
           phone: '',
             }}
             validationSchema={SignupSchema}
-        onSubmit={(values, actions) => {              
-              dispatch(addContact({...values}));
-              actions.resetForm();          
-            }}
+        onSubmit={(values, actions) => {            
+            dispatch(addContact({...values}));
+            actions.resetForm();          
+          }}
       >
         
       <StyledForm>
