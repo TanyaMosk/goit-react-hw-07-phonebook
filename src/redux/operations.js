@@ -19,11 +19,13 @@ export const addContact = createAsyncThunk(
   "contacts/addContact",
   async (newContact, thunkAPI) => {
     try {
-   const checkResponse = await axios.get("/contacts");
-     
+       const checkResponse = await axios.get("/contacts", {
+        params: { name: newContact.name }
+   });
+      
       if (checkResponse.data.length !== 0) {
         
-        alert(`${newContact.name} is already in contacts.`);
+        alert(`${newContact.name} is already in contacts.`);        
         return thunkAPI.rejectWithValue();
       };
 
